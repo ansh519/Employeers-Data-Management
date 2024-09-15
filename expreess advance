@@ -1,0 +1,22 @@
+const express=require("express");
+const app=express();
+app.get("/health-checkup",function(req,res){
+    const kidneyid=req.query.kidneyid;
+    const username=req.headers.username;
+    const password=req.headers.password;
+    if(username!="ansh"&&password!="pass"){
+        res.status(400).json({
+            msg:"user doesnt exist",
+        });
+        return;
+    }
+    if(kidneyid!=1&& kidneyid!=2){
+        res.status(400).json({
+            msg:"wrong inputs",
+        })
+        return;
+    }
+
+    res.json({msg:"hii there i am here"});
+});
+app.listen("3002");
